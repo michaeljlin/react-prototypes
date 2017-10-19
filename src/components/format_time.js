@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class FormatTime extends Component{
+    trailingZero(number) {
+        return number < 10 ? `${number}0` : number;
+    }
+
+    leadingZero(number){
+        return number < 10 ? `0${number}` : number;
+    }
 
     componentWillReceiveProps(nextProps){
         const {elapsed} = nextProps;
@@ -30,7 +37,7 @@ class FormatTime extends Component{
             position: 'relative',
             left: '50%',
             transform: 'translate(-50%)',
-            width: '295px'
+            width: '383px'
         };
     }
 
@@ -38,7 +45,7 @@ class FormatTime extends Component{
         const {hour,min,sec,ms} = this.state;
 
         return(
-            <div style={this.timerStyle}>{hour}:{min}:{sec}:{ms}</div>
+            <div style={this.timerStyle}>{this.leadingZero(hour)}:{this.leadingZero(min)}:{this.leadingZero(sec)}:{this.trailingZero(ms)}</div>
         );
     }
 }
