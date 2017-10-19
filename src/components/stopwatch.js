@@ -3,9 +3,17 @@ import Time from './format_time';
 
 class Stopwatch extends Component{
     start(){
+        const {start, elapsed} = this.state;
+
+        let newStart = new Date().getTime();
+
+        if(start !== null){
+            newStart = newStart - elapsed;
+        }
+
         this.setState({
             status: 'running',
-            start: new Date().getTime()
+            start: newStart
         });
         setTimeout(this.update, 10);
     };
