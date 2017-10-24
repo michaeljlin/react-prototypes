@@ -7,6 +7,7 @@ class ContactForm extends Component{
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.reset = this.reset.bind(this);
 
         this.state = {
             form:{
@@ -36,6 +37,18 @@ class ContactForm extends Component{
         event.preventDefault();
         console.log('handleSubmit called: ',this.state.form);
         this.props.add(this.state.form);
+        this.reset();
+    }
+
+    reset(){
+        this.setState({
+            form:{
+                firstName: '',
+                lastName: '',
+                phone: '',
+                email: ''
+            }
+        });
     }
 
     render(){
@@ -49,6 +62,9 @@ class ContactForm extends Component{
                 <Field name="email" label="Email" type="email" value={email} onChange={this.handleInputChange}/>
                 <button>
                     Add Contact
+                </button>
+                <button type="button" onClick={this.reset}>
+                    Clear Form
                 </button>
             </form>
         )
