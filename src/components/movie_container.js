@@ -28,10 +28,14 @@ class MoviesContainer extends Component{
 
     render(){
         console.log("State is: ",this.state.movies);
+
+        const movieList = this.state.movies.map((movieInfo, index)=>{
+            return <Movie info={movieInfo} key={index}/>;
+        });
+
         return(
-            <div>
-                <h2>Movie Container</h2>
-                <Movie />
+            <div className="container row">
+                {movieList}
             </div>
         )
     }
